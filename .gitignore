@@ -15,5 +15,9 @@ env/
 .DS_Store
 Thumbs.db
 
-# Exclude large dense binary matrices
+# Trained model artifacts & exports
+Model/*
+!Model/.gitkeep
 *.npy
+*.npz
+*.pkl
