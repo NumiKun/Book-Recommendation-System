@@ -136,7 +136,6 @@ def load_models():
 def load_books():
     books = pd.read_parquet(os.path.join(MODEL_DIR, "books_filtered.parquet"))
     books["Year"] = pd.to_numeric(books["Year"], errors="coerce")
-    books = books[books["Year"].between(1900, 2025) | books["Year"].isna()]
     return books.reset_index(drop=True)
 
 
@@ -169,12 +168,15 @@ def build_user_item_matrix(_ratings, _user_enc, _item_enc):
 def content_recs(isbn, tfidf_mat, isbn_to_idx, books, top_n=10):
     if isbn not in isbn_to_idx:
         return pd.DataFrame()
-    idx = isbn_to_idx[isbn]
-    scores = cosine_similarity(tfidf_mat[idx], tfidf_mat).flatten()
+    idx_to_isbn = {v: k for k, v in isbn_to_idx.items()}
+    query_idx = isbn_to_idx[isbn]
+    scores = cosine_similarity(tfidf_mat[query_idx], tfidf_mat).flatten()
     top_idx = np.argsort(scores)[::-1][1: top_n + 1]
-    result = books.iloc[top_idx][["ISBN", "Title", "Author", "Year", "Image-L"]].copy()
-    result["Score"] = scores[top_idx].round(4)
-    return result.reset_index(drop=True)
+    top_isbns = [idx_to_isbn[i] for i in top_idx if i in idx_to_isbn]
+    top_scores = {idx_to_isbn[i]: float(scores[i]) for i in top_idx if i in idx_to_isbn}
+    result = books[books["ISBN"].isin(top_isbns)][["ISBN", "Title", "Author", "Year", "Image-L"]].copy()
+    result["Score"] = result["ISBN"].map(top_scores).round(4)
+    return result.sort_values("Score", ascending=False).reset_index(drop=True)
 
 
 def als_recs(user_id, als_model, user_enc, item_enc, books, uim, top_n=10):
