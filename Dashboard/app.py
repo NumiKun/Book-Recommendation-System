@@ -421,8 +421,8 @@ elif page == "🔍 Content-Based":
         fig_sim = go.Figure(go.Bar(
             x=cb_recs["Score"].tolist(), y=labels_cb,
             orientation="h", marker=dict(color=COLORS[1], opacity=0.85)))
-        fig_sim.update_layout(**CHART_LAYOUT, height=350, xaxis_title="Cosine Similarity",
-                              yaxis=dict(autorange="reversed", **CHART_LAYOUT["yaxis"]))
+        sim_layout = {**CHART_LAYOUT, "yaxis": dict(autorange="reversed", **CHART_LAYOUT["yaxis"])}
+        fig_sim.update_layout(**sim_layout, height=350, xaxis_title="Cosine Similarity")
         st.plotly_chart(fig_sim, use_container_width=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
