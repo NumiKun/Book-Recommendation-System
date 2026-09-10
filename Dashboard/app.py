@@ -485,9 +485,9 @@ elif page == "👤 Collaborative":
         fig_fa = go.Figure(go.Bar(
             x=fav_auth.values[::-1], y=fav_auth.index[::-1],
             orientation="h", marker_color=COLORS[3]))
-        fig_fa.update_layout(**CHART_LAYOUT, height=300,
-                              title=dict(text="Avg. Rating by Author", font=dict(size=13, color="#e6edf3")),
-                              xaxis=dict(range=[0, 10], **CHART_LAYOUT["xaxis"]))
+        fa_layout = {**CHART_LAYOUT, "xaxis": dict(range=[0, 10], **CHART_LAYOUT["xaxis"])}
+        fig_fa.update_layout(**fa_layout, height=300,
+                              title=dict(text="Avg. Rating by Author", font=dict(size=13, color="#e6edf3")))
         st.plotly_chart(fig_fa, use_container_width=True)
 
     with col_c2:
