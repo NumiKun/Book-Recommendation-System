@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📚 BookMind — Book Recommendation System
+# BookMind — Book Recommendation System
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://book-recommendation-syste.streamlit.app/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?logo=python&logoColor=white)](https://www.python.org/)
@@ -9,48 +9,48 @@
 
 **A hybrid book recommendation system combining collaborative filtering, matrix factorization, and content-based analysis — trained on the Book-Crossing dataset with 1.1M+ ratings.**
 
-[🚀 Live Demo](https://book-recommendation-syste.streamlit.app/) · [📓 Notebook](Notebook/book_recommendation_system.ipynb) · [📊 Dataset](#dataset)
+[Live Demo](https://book-recommendation-syste.streamlit.app/) · [Notebook](Notebook/book_recommendation_system.ipynb) · [Dataset](#dataset)
 
 </div>
 
 ---
 
-## 🎯 Overview
+## Overview
 
 BookMind is a complete, end-to-end book recommendation system built using three complementary approaches fused into a **hybrid engine**:
 
 | Model | Algorithm | Library |
 |---|---|---|
-| 🎯 Content-Based | TF-IDF + Cosine Similarity | `scikit-learn` |
-| 🤝 Collaborative Filtering | Implicit ALS (Matrix Factorization) | `implicit` |
-| ⭐ Model-Based CF | SVD++ with Implicit Feedback | `scikit-surprise` |
+| Content-Based | TF-IDF + Cosine Similarity | `scikit-learn` |
+| Collaborative Filtering | Implicit ALS (Matrix Factorization) | `implicit` |
+| Model-Based CF | SVD++ with Implicit Feedback | `scikit-surprise` |
 
 The system is presented through an interactive **Streamlit dashboard** with 5 pages: Overview, Content-Based, Collaborative, Hybrid, and Analytics.
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
-**👉 [https://book-recommendation-syste.streamlit.app/](https://book-recommendation-syste.streamlit.app/)**
+**[https://book-recommendation-syste.streamlit.app/](https://book-recommendation-syste.streamlit.app/)**
 
 The live app includes:
-- 🏠 **Overview** — KPI metrics, rating distribution, top authors, most rated books
-- 🔍 **Content-Based** — Search any book and find similar titles via TF-IDF
-- 👤 **Collaborative** — Select a user and get personalized ALS recommendations
-- 🔀 **Hybrid** — Tune ALS / SVD++ / Content weights and generate fused recommendations
-- 📊 **Analytics** — Catalog, user, and rating analytics with interactive Plotly charts
+- **Overview** — KPI metrics, rating distribution, top authors, most rated books
+- **Content-Based** — Search any book and find similar titles via TF-IDF
+- **Collaborative** — Select a user and get personalized ALS recommendations
+- **Hybrid** — Tune ALS / SVD++ / Content weights and generate fused recommendations
+- **Analytics** — Catalog, user, and rating analytics with interactive Plotly charts
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Book Recommendation System/
 │
-├── 📓 Notebook/
+├── Notebook/
 │   └── book_recommendation_system.ipynb   # Full ML pipeline (EDA → Training → Inference)
 │
-├── 🤖 Model/
+├── Model/
 │   ├── als_model.pkl                      # Trained ALS model
 │   ├── svdpp_model.pkl                    # Trained SVD++ model
 │   ├── tfidf_vectorizer.pkl               # Fitted TF-IDF vectorizer
@@ -58,16 +58,16 @@ Book Recommendation System/
 │   ├── encoders.pkl                       # User/item LabelEncoders + isbn_to_idx map
 │   └── books_filtered.parquet             # Filtered book metadata
 │
-├── 📊 Dashboard/
+├── Dashboard/
 │   ├── app.py                             # Streamlit dashboard application
 │   └── requirements.txt                   # Python dependencies for deployment
 │
-├── 🗄️ Dataset/
+├── Dataset/
 │   ├── Books.csv
 │   ├── Ratings.csv
 │   └── Users.csv
 │
-├── 🗃️ SQL/
+├── SQL/
 │   ├── 01_schema.sql
 │   ├── 02_insert_users.sql
 │   ├── 03_insert_books.sql
@@ -79,7 +79,7 @@ Book Recommendation System/
 
 ---
 
-## 📊 Dataset
+## Dataset
 
 This project uses the **[Book-Crossing Dataset](http://www2.informatik.uni-freiburg.de/~cziegler/BX/)** collected by Cai-Nicolas Ziegler.
 
@@ -90,13 +90,13 @@ This project uses the **[Book-Crossing Dataset](http://www2.informatik.uni-freib
 | `Users.csv` | 278,858 | Anonymized user demographics |
 
 **After preprocessing:**
-- ✅ 13,339 books with ≥10 interactions
-- ✅ 6,827 active users with ≥5 explicit ratings
-- ✅ ~433K explicit rating interactions used for training
+- 13,339 books with ≥10 interactions
+- 6,827 active users with ≥5 explicit ratings
+- ~433K explicit rating interactions used for training
 
 ---
 
-## 🧠 Methodology
+## Methodology
 
 ### Pipeline
 
@@ -136,7 +136,7 @@ Cosine Similarity       User-Item Matrix         Rating Prediction
 
 ---
 
-## 📈 Results
+## Results
 
 | Model | Metric | Value |
 |---|---|---|
@@ -148,7 +148,7 @@ Cosine Similarity       User-Item Matrix         Rating Prediction
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Category | Library |
 |---|---|
@@ -160,7 +160,7 @@ Cosine Similarity       User-Item Matrix         Rating Prediction
 
 ---
 
-## ⚙️ Installation & Running Locally
+## Installation & Running Locally
 
 ### 1. Clone the repository
 ```bash
@@ -190,7 +190,7 @@ Open your browser and navigate to `http://localhost:8501`.
 
 ---
 
-## 🗃️ SQL Schema
+## SQL Schema
 
 The `SQL/` folder contains scripts to load the dataset into a relational database for analysis:
 
@@ -206,27 +206,27 @@ Refer to `SQL/import_guide.md` for detailed instructions.
 
 ---
 
-## 📝 Notebook
+## Notebook
 
 The Jupyter notebook [`Notebook/book_recommendation_system.ipynb`](Notebook/book_recommendation_system.ipynb) covers the full ML pipeline:
 
-1. 📦 Library Imports
-2. 📂 Dataset Loading
-3. 🔍 Exploratory Data Analysis
-4. 🧹 Data Preprocessing
-5. 🎯 Content-Based Filtering (TF-IDF)
-6. 🤝 Collaborative Filtering (ALS)
-7. ⭐ Model-Based CF (SVD++)
-8. 📊 Model Evaluation
-9. 🔀 Hybrid Recommendation Engine
-10. 🧪 Inference & Demo
-11. 📉 Latent Factor Visualisation
-12. 💾 Model Serialisation
-13. 📋 Conclusion
+1. Library Imports
+2. Dataset Loading
+3. Exploratory Data Analysis
+4. Data Preprocessing
+5. Content-Based Filtering (TF-IDF)
+6. Collaborative Filtering (ALS)
+7. Model-Based CF (SVD++)
+8. Model Evaluation
+9. Hybrid Recommendation Engine
+10. Inference & Demo
+11. Latent Factor Visualisation
+12. Model Serialisation
+13. Conclusion
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Feel free to open issues or pull requests for:
 - Bug fixes
@@ -236,13 +236,13 @@ Contributions are welcome! Feel free to open issues or pull requests for:
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
 - **[Book-Crossing Dataset](http://www2.informatik.uni-freiburg.de/~cziegler/BX/)** by Cai-Nicolas Ziegler, Sean M. McNee, Joseph A. Konstan, Georg Lausen
 - **[implicit](https://github.com/benfred/implicit)** by Ben Frederickson
@@ -251,5 +251,5 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 ---
 
 <div align="center">
-Made with ❤️ by <a href="https://github.com/NumiKun">NumiKun</a>
+Made by <a href="https://github.com/NumiKun">NumiKun</a>
 </div>
